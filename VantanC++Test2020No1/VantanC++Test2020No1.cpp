@@ -119,3 +119,25 @@ int main()
 A.defualt;
 ex.スペルが違う。正しくは、default;
 */
+
+//問6
+/*
+#include <iostream>
+
+int main()
+{
+	int size;				//制限するサイズ
+	const int MAX = 25;		//制限値
+
+	if ( size > MAX )
+		std::cout << "サイズが大きすぎる" << std::endl;
+		size = MAX;
+	std::cout << "サイズ : " << size << std::endl;
+	
+	return 0;
+}
+
+1.const int MAX	 2.if ( size > MAX )  3.size = MAX;  4.MAX = 25;
+A.if ( size > MAX )
+ex.if分に{}がないため、size = MAX;が外に出てしまう。
+*/
