@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 
-using namespace std;
-
 int main()
 {
-	
+
+
+	return 0;
 }
 
 //問1
@@ -16,7 +16,7 @@ void main()
 	std::cout << "Hello World!\n";
 }
 
-1.iostream	2.void main  3.main(void)  4.\n  
+1.iostream	2.void main  3.main(void)  4.\n
 A.void main
 ex.main()関数はオペレーティングシステムに終了コードを返す(return 0;)
 */
@@ -53,7 +53,7 @@ int main()
 {
 	char ch;		//フラグ
 	ch = OxFF;		//フラグを設定する
-	
+
 	//フラグをチェックする
 	if( ch == OxFF )
 		std::cout << "成功" << std::endl;
@@ -133,7 +133,7 @@ int main()
 		std::cout << "サイズが大きすぎる" << std::endl;
 		size = MAX;
 	std::cout << "サイズ : " << size << std::endl;
-	
+
 	return 0;
 }
 
@@ -141,3 +141,37 @@ int main()
 A.if ( size > MAX )
 ex.if分に{}がないため、size = MAX;が外に出てしまう。
 */
+
+//問7
+//
+//static int length(
+//	const char string[]		//チェックする文字列
+//)
+//{
+//	int index;				//文字列のインデックス
+//	/*
+//   *　文字列の末尾に達するまでループする
+//   */
+//	for (index = 0; string[index] != '\0'; ++index)
+//		/* 何もしない */
+//
+//		return index;
+//}
+//
+//int main()
+//{
+//	char line[100];			//ユーザーからの入力行
+//
+//	while (1) {
+//		std::cout << "文字列を入力してください : ";
+//		std::cin.getline(line, sizeof(line));
+//
+//		std::cout << "文字列の長さ: "
+//			<< length(line) << std::endl;
+//	}
+//	return 0;
+//}
+
+//1.std::cin.getline(line, sizeof(line));  2.const char string[]  3.char line[100];  4./* 何もしない */
+//A./* 何もしない */
+//ex./* 何もしない */の後にセミコロン(;)がないため、return index;がfor文の一部になってしまう。
