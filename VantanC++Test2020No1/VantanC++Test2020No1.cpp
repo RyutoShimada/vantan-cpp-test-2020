@@ -1,9 +1,6 @@
 ﻿#include <iostream>
 
-int main()
-{
 
-}
 
 //問1
 /*
@@ -218,4 +215,27 @@ int main()
 1.counter = MAX;  2.MAX = 10;  3.counter > 0; --counter  4.<< "はい、こんにちは！\n";
 A.MAX = 10;
 ex.counter = MAX は MAX = 10 によって counter == 10 となり、初期化できていないので、回数が不定になる。
+*/
+
+//問10
+/*
+#include <iostream>
+
+//簡単な行列
+	int matrix[3][3] = {
+		{11, 12, 13},
+		{21, 22, 23},
+		{31, 32, 33}
+	};
+
+int main()
+{
+	std::cout << "Element[1, 2] : " << matrix[1, 2]
+			  << std::endl;
+	return (0);
+}
+
+1.{31, 32, 33}  2.int matrix[3][3] = {  3.{21, 22, 23},  4.matrix[1, 2]
+A.matrix[1, 2]
+ex.C++のカンマ演算子は、単純に第2部分の結果を返すので、第1部分を捨てるように指示することになる。正しくは、matrix[1][2]。
 */
