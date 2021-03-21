@@ -3,8 +3,6 @@
 int main()
 {
 
-
-	return 0;
 }
 
 //問1
@@ -175,3 +173,28 @@ ex.if分に{}がないため、size = MAX;が外に出てしまう。
 //1.std::cin.getline(line, sizeof(line));  2.const char string[]  3.char line[100];  4./* 何もしない */
 //A./* 何もしない */
 //ex./* 何もしない */の後にセミコロン(;)がないため、return index;がfor文の一部になってしまう。
+
+//問8
+/*
+#include <iostream>
+
+int main()
+{
+	int n1, n2;		//2つの整数
+
+	std::cout << "2つの整数を入力してください ; ";
+	std::cin >> n1 >> n2;
+
+	if (n2 = !0)
+		std::cout << "除算結果 : "
+				  << (n1 / n2) << '\n';
+	else
+		std::cout <<"ゼロで割ることはできません" <<std::endl;
+
+	return 0;
+}
+
+1.n2 = !0  2.std::cout << "除算結果 : "  3.<< (n1 / n2) << '\n';  4.std::cin >> n1 >> n2;
+A.n2 = !0
+ex.n2 = !0 n2に0以外の数値を代入する式になっている。n2 != 0が正しい。
+*/
