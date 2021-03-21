@@ -198,3 +198,24 @@ int main()
 A.n2 = !0
 ex.n2 = !0 n2に0以外の数値を代入する式になっている。n2 != 0が正しい。
 */
+
+//問9
+/*
+#include <iostream>
+
+#define MAX = 10;
+
+int main()
+{
+	int counter;		//現在のあいさつ回数
+
+	for ( counter = MAX; counter > 0; --counter )
+		sed::cout << "はい、こんにちは！\n";
+	
+	return (0);
+}
+
+1.counter = MAX;  2.MAX = 10;  3.counter > 0; --counter  4.<< "はい、こんにちは！\n";
+A.MAX = 10;
+ex.counter = MAX は MAX = 10 によって counter == 10 となり、初期化できていないので、回数が不定になる。
+*/
