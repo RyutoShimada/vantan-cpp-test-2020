@@ -1,8 +1,8 @@
 ﻿#include <iostream>
 
-
 int main()
 {
+
 
 	return 0;
 }
@@ -342,4 +342,173 @@ int main()
 1.bool_name(true)bool_name(true)  2.const std::string& false_name("false");  3.const bool value  4.static const std::string& bool_name
 A.static const std::string& bool_name
 ex.この関数がローカル変数への参照を返す点が問題。これでは宙吊り参照となり存在しない何かを参照するのでトラブルとなる。
+*/
+
+//問14
+/*
+#include <iostream>
+
+const int& max(
+	const int& i1,	//1つの変数
+	const int& i2	//もう1つの変数
+)
+{
+	if (i1 < i2)
+		return (i1);
+	return (i2);
+}
+
+int main()
+{
+	//iは、2つの式の最大のものである
+	const int& i = max(1 + 2, 3 + 4);
+
+	std::cout
+		<< "最大の式は : "
+		<< i << std::endl;
+
+	return 0;
+}
+
+1.const int& max  2.const int& i  3.max(1 + 2, 3 + 4)  4.const int& i1
+A.const int& max
+ex.max()が仮引数へ参照を返すことが問題。関数を抜けた時点でiは存在しない何かを参照することになるで、宙づり参照となる。
+*/
+
+//問15
+/*
+#include <iostream>
+
+struct data
+{
+	//次のパラメーターの意味を示すフラグ
+	char flag;
+
+	//パラメーターの値
+	long int value;
+};
+
+void read_data(
+	std::istream& in_file,	//読み取るファイル
+	struct data& what		//取得するファイル
+)
+{
+	in_file.read(
+		(char*)(&what),
+		sizeof(what));
+}
+
+1.struct data& what  2.char flag;  3.(char*)(&what)  4.std::istream& in_file,
+A.char flag;
+ex.アライメントの問題。C++の構造体では、整頓するためにパディング(詰め物)を挿入する。
+*/
+
+//問16
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問17
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問18
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問19
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問20
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問21
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問22
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問23
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問24
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
+*/
+
+//問25
+/*
+#include <iostream>
+
+
+
+1.  2.  3.  4.
+A.
+ex.
 */
