@@ -1,33 +1,9 @@
 ﻿#include <iostream>
 
-#define CI const int
-CI P_USER = (1 << 1);		//通常ユーザーの特権
-CI P_REBOOT = (1 << 2);		//システムをリブートできる
-CI P_KILL = (1 << 3);		//任意のプロセスを殺せる
-CI P_TAPE = (1 << 4);		//テープデバイスを使える
-CI P_RAW = (1 << 5);		//RAWデバイスの入出力ができる
-CI P_DRIVER = (1 << 6);		//ドライバをロードできる
-CI P_ADMIN = (1 << 7);		//管理を行うことができる
-CI P_BACKUP = (1 << 8);		//バックアップ操作ができる
 
 int main()
 {
-	//特権
-	unsigned char privs = 0;
 
-	//いくつかの特権を設定する
-	privs |= P_ADMIN;
-	privs |= P_BACKUP;
-
-	std::cout << "特権";
-
-	if ((privs & P_ADMIN) != 0)
-		std::cout << "管理特権";
-
-	if ((privs & P_BACKUP) != 0)
-		std::cout << "バックアップ特権";
-
-	std::cout << std::endl;
 	return 0;
 }
 
@@ -269,7 +245,7 @@ A.matrix[1, 2]
 ex.C++のカンマ演算子は、単純に第2部分の結果を返すので、第1部分を捨てるように指示することになる。正しくは、matrix[1][2]。
 */
 
-//問10
+//問11
 /*
 #include <iostream>
 
@@ -307,4 +283,63 @@ int main()
 1.privs |= P_BACKUP;  2.CI P_ADMIN = (1 << 7);  3.privs |= P_ADMIN;  4.#define CI const int
 A.privs |= P_BACKUP;
 ex.1個の文字は0～7までの番号が付いた8個のビットを持つ。番号8のビットは存在しいないので、この式は何もしない。
+*/
+
+//問12
+/*
+#include <iostream>
+
+int main()
+{
+	char ch = 'A';
+
+	std::cout << ch;		//Aを出力する
+	std::cout << ch + 1;	//Bを出力する
+	std::cout << ch + 2;	//Cを出力する
+	std::cout << std::endl;
+	return (0);
+}
+
+1.std::cout << std::endl;  2.char ch = 'A';  3.std::cout << ch + 1;  4.std::cout << ch;
+A.std::cout << std::endl;
+ex.「ch + 1」は整数(66)になる。C++はこれを検出し、std::cout.operator << (int)関数を呼びだすので、整数値を出力する。正しくは、static_cast<char>(ch + 1)
+*/
+
+//問13
+/*
+#include <iostream>
+#include <string>
+
+static const std::string& bool_name(
+	const bool value	//チェックする値
+)
+{
+	//'true'の値
+	const std::string& true_name("true");
+
+	//'true'の値
+	const std::string& false_name("false");
+
+	if (value == true)
+		return(true_name);
+
+	return(false_name);
+}
+
+int main()
+{
+	char ch = 'A';
+
+	std::cout << "true は " << bool_name(true)
+		<< std::endl;
+
+	std::cout << "false は " << bool_name(false)
+		<< std::endl;
+
+	return 0;
+}
+
+1.bool_name(true)bool_name(true)  2.const std::string& false_name("false");  3.const bool value  4.static const std::string& bool_name
+A.static const std::string& bool_name
+ex.この関数がローカル変数への参照を返す点が問題。これでは宙吊り参照となり存在しない何かを参照するのでトラブルとなる。
 */
