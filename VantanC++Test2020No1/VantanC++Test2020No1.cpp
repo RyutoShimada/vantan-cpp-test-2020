@@ -3,8 +3,6 @@
 int main()
 {
 
-
-	return 0;
 }
 
 //問1
@@ -406,12 +404,38 @@ ex.アライメントの問題。C++の構造体では、整頓するために�
 //問16
 /*
 #include <iostream>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <sys/param.h>
 
+char* tmp_name(void) {
+	//生成する名前
+	char name[MAXPATHLEN];
 
+	//生成する名前の基本部分
+	const char DIR[] = "/var/tmp/tmp";
 
-1.  2.  3.  4.
-A.
-ex.
+	//最終桁用の連番
+	static int sequence = 0;
+
+	++sequence;		//次のファイルに移る
+
+	sprintf(name, "%.%d", DIR, sequence);
+
+	return (name);
+}
+
+int main()
+{
+	char* a_name = tmp_name();	//	一時的な名前
+	std::cout << "Name : " << a_name << std::endl;
+	return 0;
+}
+
+1.char* a_name = tmp_name();  2.static int sequence  3.char name[MAXPATHLEN];  4.sprintf(name, "%.%d"
+A.char name[MAXPATHLEN];
+ex.tmp_name()がローカル変数をnameへのポインタを返すことが問題。staticと宣言することで解決。
 */
 
 //問17
