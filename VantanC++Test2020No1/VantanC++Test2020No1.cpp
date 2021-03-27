@@ -3,6 +3,7 @@
 int main()
 {
 
+	return 0;
 }
 
 //問1
@@ -441,45 +442,119 @@ ex.tmp_name()がローカル変数をnameへのポインタを返すことが問
 //問17
 /*
 #include <iostream>
+#include <iomanip>
 
+int main()
+{
+	//SanDiegoの郵便番号
+	const long int san_diego_zip = 92126;
 
+	//Bostonの郵便番号
+	const long int boston_zip = 02126;
 
-1.  2.  3.  4.
-A.
-ex.
+	std::cout << "San Diego " << std::setw(5)
+		<< std::setfill('0') << san_diego_zip
+		<< std::endl;
+
+	std::cout << "Boston " << std::setw(5)
+		<< std::setfill('0') << boston_zip
+		<< std::endl;
+	return 0;
+}
+
+1.const long int san_diego_zip = 92126;  2.const long int boston_zip = 02126;  3.std::setfill('0') << san_diego_zip  4.std::cout << "Boston " << std::setw(5)
+A.const long int boston_zip = 02126;
+ex.0から始まる数値は8進数と認識されるので、違う結果になる。
 */
 
 //問18
 /*
-#include <iostream>
+#include <stdio.h>
 
+#define PATH "/user/tmp"
 
+char* full_name(
+	const char name[]
+)
+{
+	static char file_name[100];
 
-1.  2.  3.  4.
-A.
-ex.
+	strcpy(file_name, PATH);
+	strcat(file_name, '/');
+	strcat(file_name, name);
+	return (file_name);
+}
+
+int main()
+{
+	printf("フルパス名 : %s\n", full_name("data"));
+
+	return 0;
+}
+
+1.const char name[]  2.%s\n", full_name("data")  3.return (file_name);  4.strcat(file_name, '/');
+A.strcat(file_name, '/');
+ex.strcat()は2つの文字列を引数にとるので「"/"」が正しい。さらに、使用するすべての関数のプロトタイプを定義したヘッダを必ずインクルードすること(#include <string.h>)。
 */
 
 //問19
 /*
 #include <iostream>
 
+#define GROSS(12 ** 2)
 
+int main()
+{
+	int i;		//テーブルのインデックス
 
-1.  2.  3.  4.
-A.
-ex.
+	for (i = 0; i <= 10; ++i)
+	{
+		std::cout << i << "グロス : "
+			<< (GROSS * i) << '\n';
+	}
+	return 0;
+}
+
+1.for (i = 0; i <= 10; ++i)  2.std::cout << i << "グロス : "  3.GROSS(12 ** 2)  4.<< (GROSS * i) << '\n';
+A.GROSS(12 ** 2)
+ex.c++には整数用の**演算子はない。この間違った構文が、「<< (GROSS * i) << '\n';」で展開されるまで、プリプロセッサマクロの中に隠れてしまうのでエラーになる。代わりにconstを用いる。
 */
 
 //問20
 /*
 #include <iostream>
+#include <math.h>
 
+#define ABORT(msg)\
+	std::cerr << msg << std::endl;exit(8);
 
+static int square_root(
+	const int value
+)
+{
+	if (value < 0)
+		ABORT("無効な平方根");
 
-1.  2.  3.  4.
-A.
-ex.
+	return (int(sqrt(float(value))));
+}
+
+int main()
+{
+	int square;		//平方根を表す数値
+	int root;		//数値の平方根
+
+	square = 5 * 5;
+	root = square_root(square);
+
+	std::cout << "答え : " << root << '\n';
+
+	return 0;
+}
+
+1.#define ABORT(msg)\  2.std::cerr << msg << std::endl;exit(8);  3.square = 5 * 5;  4.return (int(sqrt(float(value))));
+A.std::cerr << msg << std::endl;exit(8);
+ex.ABORTマクロは2つの文に展開される。「std::cerr << msg << std::endl;」と「exit(8);」。ここでのif文は{}がないため、exit(8);はif文には含まれない。
+   正しくは、{std::cerr << msg << std::endl;exit(8);}
 */
 
 //問21

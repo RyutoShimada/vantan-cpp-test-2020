@@ -1,4 +1,2 @@
 ﻿  VantanC++Test2020No1.cpp
-C:\Users\busin\Documents\VGA\PS20A\VantanC++Test2020\VantanC++Test2020No1\VantanC++Test2020No1\VantanC++Test2020No1.cpp(15): warning C4172: ローカル変数またはテンポラリのアドレスを返します: $S1
-C:\Users\busin\Documents\VGA\PS20A\VantanC++Test2020\VantanC++Test2020No1\VantanC++Test2020No1\VantanC++Test2020No1.cpp(17): warning C4172: ローカル変数またはテンポラリのアドレスを返します: $S2
   VantanC++Test2020No1.vcxproj -> C:\Users\busin\Documents\VGA\PS20A\VantanC++Test2020\VantanC++Test2020No1\Debug\VantanC++Test2020No1.exe
