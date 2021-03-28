@@ -2,6 +2,7 @@
 
 int main()
 {
+
 	return 0;
 }
 
@@ -591,11 +592,31 @@ ex.プリプロセッサはC++構文を理解しないので、+演算子と認�
 /*
 #include <iostream>
 
+class  tester
+{
+public:
+	tester(void)
+	{
+		std::cout << "tester::tester()が呼び出された\n";
+	 }
+	~tester(void)
+	{
+		std::cout << "tester::~tester()は呼び出された\n";
+	}
+};
 
+//テストで用いる変数
+static tester a_var;
 
-1.  2.  3.  4.
-A.
-ex.
+int main()
+{
+	std::cout << "main()関数の中\n";
+	return 0;
+}
+
+1.tester(void)  2.static tester a_var;  3.~tester(void)  4.std::cout << "main()関数の中\n";
+A.static tester a_var;
+ex.問題は、グローバル変数の初期化順序が保証されない点。
 */
 
 //問23
