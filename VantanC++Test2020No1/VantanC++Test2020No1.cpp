@@ -2,7 +2,6 @@
 
 int main()
 {
-
 	return 0;
 }
 
@@ -561,11 +560,31 @@ ex.ABORTマクロは2つの文に展開される。「std::cerr << msg << std::e
 /*
 #include <iostream>
 
+//上辺の最初の部分は37フィート
+#define TOP_PART1 37
 
+//上辺の2番目の部分は33フィート
+#define TOP_PART2 33
 
-1.  2.  3.  4.
-A.
-ex.
+//上辺のサイズ
+#define TOP_TOTAL TOP_PART1 + TOP_PART2
+
+//側面は10フィート
+#define SIDE 10
+
+//矩形の面積
+#define AREA TOP_TOTAL * SIDE
+
+int main()
+{
+	std::cout << "矩形の面積 : "
+		<< AREA << std::endl;
+	return 0;
+}
+
+1.#define TOP_PART2 33  2.#define AREA TOP_TOTAL * SIDE  3.#define TOP_TOTAL TOP_PART1 + TOP_PART2  4.#define TOP_PART1 37
+A.#define TOP_TOTAL TOP_PART1 + TOP_PART2
+ex.プリプロセッサはC++構文を理解しないので、+演算子と認識されない。正しくは、#define TOP_TOTAL (TOP_PART1 + TOP_PART2)
 */
 
 //問22
