@@ -1,7 +1,87 @@
 ﻿#include <iostream>
 
+class array
+{
+protected:
+	//配列のサイズ
+	int size;
+
+	//配列のデータそのもの
+	int* data;
+public:
+	//コンストラクタ --
+	//配列のサイズを設定し、データを作成する
+	array(const int i_size) :
+		size(i_size),
+		data(new int[size])
+	{
+		//データをクリアする
+		memset(data, '\0',
+			size * sizeof(data[0]));
+	}
+
+	//デストラクタ -- ヒープを開放する
+	virtual ~array(void)
+	{
+		delete[]data;
+		data = NULL;
+	}
+
+	//コピーコンストラクタ
+	array(const array& old_array)
+	{
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+	}
+
+	//代入演算子関数 --
+	//古いデータを削除してコピーする
+	array& operator = (const array& old_array)
+	{
+		delete[]data;
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+		return *this;
+	}
+
+public:
+	//配列の要素への参照を取得する
+	int& operator [](const unsigned int item)
+	{
+		return data[item];
+	}
+};
+
+void three_more_elements(
+	//変更される新しい配列
+	array& to_array,
+
+	//元の配列
+	const array& from_array
+)
+{
+	to_array = from_array;
+	to_array[10] = 1;
+	to_array[11] = 3;
+	to_array[11] = 5;
+}
+
 int main()
 {
+	//簡単なテスト用の配列
+	array an_array(30);
+
+	//要素を配置する
+	an_array[2] = 2;
+
+	//もう少し用を追加する
+	three_more_elements(an_array, an_array);
 
 	return 0;
 }
@@ -622,32 +702,216 @@ ex.問題は、グローバル変数の初期化順序が保証されない点�
 //問23
 /*
 #include <iostream>
+#include <fstream>
 
+//ログフィル
+std::ofstream log_file("prog.log");
 
+void print_msg_one(
+	//メッセージを出力する
+	std::ostream out_file,
 
-1.  2.  3.  4.
-A.
-ex.
+	//出力するメッセージ
+	const char msg[]
+)
+{
+	out_file << msg << std::endl;
+}
+
+void print_msg(
+	//ログに出力するメッセージ
+	const char msg[]
+)
+{
+	print_msg_one(std::cout, msg);
+	print_msg_one(log_file, msg);
+}
+
+int main()
+{
+	print_msg("Hello World!");
+	return 0;
+};
+
+1.std::ostream out_file,  2.std::ofstream log_file("prog.log");  3.print_msg_one(  4.const char msg[]
+A.std::ostream out_file,
+ex.問題は、ostreamが値渡しで渡される点。この仮引数は参照渡しの方法に変更する必要がある。
 */
 
 //問24
 /*
 #include <iostream>
+#include <fstream>
+#include <stdlib.h>
 
+int main()
+{
+	//出力する現在の文字
+	unsigned char cur_char;
 
+	//出力ファイル
+	std::ofstream out_file;
 
-1.  2.  3.  4.
-A.
-ex.
+	out_file.open("test.out", std::ios::out);
+	if (!out_file.good())
+	{
+		std::cerr << "出力ファイルを開けません\n";
+		exit(8);
+	}
+
+	for (cur_char = 0;
+		 cur_char < 128;
+		 ++cur_char)
+	{
+		out_file << cur_char;
+	}
+	return 0;
+}
+
+1.cur_char < 128;  2.if (!out_file.good())  3.std::ofstream out_file;  4."test.out", std::ios::out
+A."test.out", std::ios::out
+ex.問題は、ファイルタイプをバイナリ(ios::binary)と指定しなかったこと。
 */
 
 //問25
 /*
 #include <iostream>
 
+class array
+{
+protected:
+	//配列のサイズ
+	int size;
 
+	//配列のデータそのもの
+	int* data;
+public:
+	//コンストラクタ --
+	//配列のサイズを設定し、データを作成する
+	array(const int i_size) :
+		size(i_size),
+		data(new int[size])
+	{
+		//データをクリアする
+		memset(data, '\0',
+			size * sizeof(data[0]));
+	}
 
-1.  2.  3.  4.
-A.
-ex.
+	//デストラクタ -- ヒープを開放する
+	virtual ~array(void)
+	{
+		delete[]data;
+		data = NULL;
+	}
+
+	//コピーコンストラクタ
+	array(const array& old_array)
+	{
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+	}
+
+	//代入演算子関数 --
+	//古いデータを削除してコピーする
+	array& operator = (const array& old_array)
+	{
+		delete[]data;
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+		return *this;
+	}
+
+public:
+	//配列の要素への参照を取得する
+	int& operator [](const unsigned int item)
+	{
+		return data[item];
+	}
+};
+
+void three_more_elements(
+	//変更される新しい配列
+	array& to_array,
+
+	//元の配列
+	const array& from_array
+)
+{
+	to_array = from_array;
+	to_array[10] = 1;
+	to_array[11] = 3;
+	to_array[11] = 5;
+}
+
+int main()
+{
+	//簡単なテスト用の配列
+	array an_array(30);
+
+	//要素を配置する
+	an_array[2] = 2;
+
+	//もう少し用を追加する
+	three_more_elements(an_array, an_array);
+
+	return 0;
+}
+
+1.//コンストラクタ --
+	//配列のサイズを設定し、データを作成する
+	array(const int i_size) :
+		size(i_size),
+		data(new int[size])
+	{
+		//データをクリアする
+		memset(data, '\0',
+			size * sizeof(data[0]));
+	}
+
+2.//デストラクタ -- ヒープを開放する
+	virtual ~array(void)
+	{
+		delete[]data;
+		data = NULL;
+	}
+
+3.//代入演算子関数 --
+	//古いデータを削除してコピーする
+	array& operator = (const array& old_array)
+	{
+		delete[]data;
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+		return *this;
+	}
+
+4.//配列の要素への参照を取得する
+	int& operator [](const unsigned int item)
+	{
+		return data[item];
+	}
+
+A.//代入演算子関数 --
+	//古いデータを削除してコピーする
+	array& operator = (const array& old_array)
+	{
+		delete[]data;
+		size = old_array.size;
+		data = new int[size];
+
+		memcpy(data, old_array.data,
+			size * sizeof(data[0]));
+		return *this;
+	}
+ex.問題は、an_array = an_array;という文が隠されていること。これを避けるために明示的な自己代入チェックすること。
+	if(this == &old_array) return;
 */
